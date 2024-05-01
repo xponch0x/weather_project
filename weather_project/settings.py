@@ -129,5 +129,6 @@ OPENWEATHERMAP_API_ENDPOINT = 'http://api.openweathermap.org/data/2.5/weather'
 OPENWEATHERMAP_API_AQI_ENDPOINT = 'http://api.openweathermap.org/data/2.5/air_pollution'
 OPENWEATHERMAP_API_HISTORY = 'http://api.openweathermap.org/data/2.5/air_pollution/history'
 
-#forecast API informati
-OPENWEATHERMAP_FORECAST_API_ENDPOINT = 'http://api.openweathermap.org/data/2.5/forecast'
+
+#forecast API information
+OPENWEATHERMAP_FORECAST_API_ENDPOINT = 'https://api.openweathermap.org/data/2.5/forecast'
