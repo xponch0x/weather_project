@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentWeather</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <style>
+        .roboto-thin {
+            font-family: "Roboto", sans-serif;
+            font-weight: 100;
+            font-style: normal;
+        }
+
+        .container {
+            padding: 80px 120px;
+        }
+
+        .container-fluid {
+            padding-top: 70px;
+            padding-bottom: 70px;
+        }
+
+        .navbar {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border: 0;
+            border-radius: 0;
+            margin-bottom: 0;
+            font-size: 10px;
+            letter-spacing: 5px;
+        }
+
+        .navbar-nav li a:hover {
+            color: #FFC72A !important;
+        }
+
+        footer {
+            background-color: #2d2d30;
+            color: #f5f5f5;
+            padding: 32px;
+        }
+
+        footer a {
+            color: #f5f5f5;
+        }
+
+        footer a:hover {
+            color: #777;
+            text-decoration: none;
+        }
+
+        .bg-1 {
+            background-color: #0A5640;
+            color: #ffffff;
+        }
+
+        #section1,
+        #section2,
+        #section3 {
+            text-align: center;
+        }
+        .forecast-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between; /* Adjust as needed */
+        }   
+
+        .forecast-item {
+            flex-basis: calc(20% - 20px); /* Adjust to set the width of each item */
+            margin-bottom: 20px;
+        }
+
+        .thumbnail {
+            border: 1px solid #ddd;
+            padding: 15px;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .divider {
+            width: 45%;
+            height: 2px;
+            background-color: #FFC72A;
+            margin: 0 auto;
+        }
+   
+    </style>    
+</head>
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#home">HOME</a></li>
+                    <li><a href="#section1">DASHBOARD</a></li>
+                    <li><a href="#map">MAP</a></li>
+                    <li><a href="#section2">FARGO FORECAST</a></li>
+                    <li><a href="#section3">MOORHEAD FORECAST</a></li>
+                    <li><a href="#who">WHO</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<body id="home" data-spy="scroll" data-target=".navbar" data-offset="50">
+    
+
+    <!--Intro and Donation Message-->
+    <div class="container text-center">
+        <h3>STUDENTWEATHER</h3>
+        <p><em>We love the environment!</em></p>
+        <p>We provide weather data in participation with North Dakota State University for non-profit use! Please consider donating!</p>
+        <br>
+            <div id="map" class="row">
+                <div>
+                    <!--Precipitation Map-->
+                    <p><strong>Precipitaion Map</strong></p><br>
+                    <iframe src="https://www.rainviewer.com/map.html" width="700" height="350"></iframe>
+                </div>
+            </div>
+    </div>
+    <div id="section1" class="container-fluid bg-1">
+        <h4>Dashboard</h4>
+        <!-- Weather Information -->
+        {% for data in weather_data %}
+    <div class="col-sm-4">
+        <div>
+            <div>
+                <img src="{{ data.weather_image }}" alt="{{ data.city }} Weather" class="img-responsive">
+                <div>
+                    <p>Temperature: {{ data.temperature }}°F</p>
+                    <p>Description: {{ data.description }}</p>
+                </div>
+            </div>
+        </div>
+
+        {% for aqi_data in air_pollution_data %}
+            {% if aqi_data.city == data.city %}
+                <div>
+                    <div>{{ aqi_data.city }} Air Pollution</div>
+                    <div>
+                        <p>AQI: {{ aqi_data.aqi }}</p>
+                        <p>Historical: {{ aqi_data.historical_data }}</p>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endfor %}
+
+</div>
+    
+    <div id="section2" class="container-fluid bg-2">
+    <!--Forecast Data for Fargo-->
+    <div>
+        <h4>Fargo Forecast</h4>
+        <div class="forecast-container">
+            {% for city_forecast in forecast_data %}
+                {% if city_forecast.city == "Fargo, ND" %}
+                    {% for forecast in city_forecast.forecasts|slice:":5" %}
+                        <div class="forecast-item">
+                            <div class="thumbnail">
+                                <p><strong>{{ forecast.date }}</strong></p>
+                                <p>{{ forecast.temperature }}°F</p>
+                                <p>{{ forecast.description }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        <div class="divider"></div>
+    </div>
+
+    <div id="section3" class="container-fluid bg-3">
+        <!--Forecast Data for Moorhead-->
+    <div>
+        <h4>Moorhead Forecast</h4>
+        <div class="forecast-container">
+            {% for city_forecast in forecast_data %}
+                {% if city_forecast.city == "Moorhead, MN" %}
+                    {% for forecast in city_forecast.forecasts|slice:":5" %}
+                        <div class="forecast-item">
+                            <div class="thumbnail">
+                                <p><strong>{{ forecast.date }}</strong></p>
+                                <p>{{ forecast.temperature }}°F</p>
+                                <p>{{ forecast.description }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</div>
+    
+    <div id="who" class="container-fluid bg-4 text-center">
+        <h3>Who Are We</h3>
+        <img src="" class="img-circle" alt="ndsu">
+        <h3>We Are NDSU Student Weather!</h3>
+    </div>
+
+    <div id="contact" class="container">
+        <h3 class="text-center">Contact</h3>
+        <p class="text-center"><em>We love our fans!</em></p>
+        <div class="row test">
+            <div class="col-md-4">
+                <p>Fan? Drop a note.</p>
+                <p><span class="glyphicon glyphicon-map-marker"></span>Chicago, US</p>
+                <p><span class="glyphicon glyphicon-phone"></span>Phone: +00 1515151515</p>
+                <p><span class="glyphicon glyphicon-envelope"></span>Email: mail@mail.com</p>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+                    </div>
+                </div>
+                <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <button class="btn pull-right" type="submit">Send</button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    
+</body>
+<footer class="text-center">
+    <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a><br><br>
+    <p>Website made by: <a href="#" data-toggle="tooltip" title="Visit w3schools">www.w3schools.com</a></p>
+</footer>
+</html>

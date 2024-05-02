@@ -126,9 +126,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 #API information
 OPENWEATHERMAP_API_KEY = 'ccc10b2fd58aec6030233953a7c5fa63'
 OPENWEATHERMAP_API_ENDPOINT = 'http://api.openweathermap.org/data/2.5/weather'
+OPENWEATHERMAP_FORECAST_API_ENDPOINT = 'http://api.openweathermap.org/data/2.5/forecast'
 OPENWEATHERMAP_API_AQI_ENDPOINT = 'http://api.openweathermap.org/data/2.5/air_pollution'
-OPENWEATHERMAP_API_HISTORY = 'http://api.openweathermap.org/data/2.5/air_pollution/history'
-
-
-#forecast API information
-OPENWEATHERMAP_FORECAST_API_ENDPOINT = 'https://api.openweathermap.org/data/2.5/forecast'
+OPENWEATHERMAP_API_HISTORY = 'http://history.openweathermap.org/data/2.5/air_pollution/history'
