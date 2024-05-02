@@ -143,8 +143,7 @@
     <div class="col-sm-4">
         <div>
             <div>
-                <img src="{{ data.weather_image }}" alt="{{ data.city }} Weather" class="img-responsive">
-                <div>
+                <div class="">
                     <p>Temperature: {{ data.temperature }}°F</p>
                     <p>Description: {{ data.description }}</p>
                 </div>
@@ -218,7 +217,8 @@
     
     <div id="who" class="container-fluid bg-4 text-center">
         <h3>Who Are We</h3>
-        <img src="" class="img-circle" alt="ndsu">
+        {% load static %}
+        <img src = "{% static "myapp/ndsu-campus.jpg" %}" class="img-circle" alt="ndsu">
         <h3>We Are NDSU Student Weather!</h3>
     </div>
 

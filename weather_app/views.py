@@ -42,7 +42,7 @@ def home(request):
         historical_air_pollution_json = historical_air_pollution_response.json()
         
         #Retrieve forecast data
-        forecast_url = f"{forecast_endpoint}?lat={weather_json['coord']['lat']}&lon={weather_json['coord']['lon']}&appid={api_key}"
+        forecast_url = f"{forecast_endpoint}?lat={weather_json['coord']['lat']}&lon={weather_json['coord']['lon']}&units={units}&appid={api_key}"
         forecast_response = requests.get(forecast_url)
         forecast_json = forecast_response.json()
         
