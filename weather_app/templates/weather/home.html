@@ -136,36 +136,45 @@
                 </div>
             </div>
     </div>
-    <div id="section1" class="container-fluid bg-1">
-        <h4>Dashboard</h4>
-        <!-- Weather Information -->
-        {% for data in weather_data %}
-    <div class="col-sm-4">
-        <div>
-            <div>
-                <img src="{{ data.weather_image }}" alt="{{ data.city }} Weather" class="img-responsive">
-                <div>
-                    <p>Temperature: {{ data.temperature }}°F</p>
-                    <p>Description: {{ data.description }}</p>
-                </div>
-            </div>
-        </div>
 
-        {% for aqi_data in air_pollution_data %}
-            {% if aqi_data.city == data.city %}
-                <div>
-                    <div>{{ aqi_data.city }} Air Pollution</div>
-                    <div>
-                        <p>AQI: {{ aqi_data.aqi }}</p>
-                        <p>Historical: {{ aqi_data.historical_data }}</p>
+
+
+
+
+    <div id="section1" class="container-fluid bg-1">
+        <h4 >Dashboard</h4>
+        <div class="row">
+            {% for data in weather_data %}
+            <div class="col-md-6">
+                <div class="card" style="background-color: #FFC72A;">
+                    <div class="card-body">
+                        <!-- Weather Information -->
+                        <div>
+                            <div>
+                                <p style="color: black">{{ data.city }}</p>
+                                <p style="color: black;">Temperature: {{ data.temperature }}°F</p>
+                                <p style="color: black;">Description: {{ data.description }}</p>
+                            </div>
+                        </div>
+                        <!-- Air Pollution Information -->
+                        {% for aqi_data in air_pollution_data %}
+                            {% if aqi_data.city == data.city %}
+                            <div>
+                                <div>
+                                    <p style="color: black;">Air Pollution AQI: {{ aqi_data.aqi }}</p>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
-            {% endif %}
-        {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
     </div>
-{% endfor %}
+    
 
-</div>
+
     
     <div id="section2" class="container-fluid bg-2">
     <!--Forecast Data for Fargo-->
