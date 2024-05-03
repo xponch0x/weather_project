@@ -63,11 +63,9 @@ def home(request):
             'forecasts': []
         }
         
-        #Get today's date
-
-        #Define the start date for the forecast (May 1st)
+        #Define the start date for the forecast
         start_date = datetime.now()
-        #Calculate the end date (5 days from start date)
+        #Calculate the end date
         end_date = start_date + timedelta(days=7)
 
 

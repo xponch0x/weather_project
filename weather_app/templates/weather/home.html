@@ -68,11 +68,11 @@
         .forecast-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between; /* Adjust as needed */
+            justify-content: space-between;
         }   
 
         .forecast-item {
-            flex-basis: calc(20% - 20px); /* Adjust to set the width of each item */
+            flex-basis: calc(20% - 20px);
             margin-bottom: 20px;
         }
 
@@ -124,7 +124,7 @@
 
     <!--Intro and Donation Message-->
     <div class="container text-center">
-        <h3>STUDENTWEATHER</h3>
+        <h3>StudentWeather.org</h3>
         <p><em>We love the environment!</em></p>
         <p>We provide weather data in participation with North Dakota State University for non-profit use! Please consider donating!</p>
         <br>
@@ -200,7 +200,7 @@
     </div>
 
     <div id="section3" class="container-fluid bg-3">
-        <!--Forecast Data for Moorhead-->
+    <!--Forecast Data for Moorhead-->
     <div>
         <h4>Moorhead Forecast</h4>
         <div class="forecast-container">
@@ -223,21 +223,23 @@
 </div>
     
     <div id="who" class="container-fluid bg-4 text-center">
-        <h3>Who Are We</h3>
+        <h3>WHO</h3>
         {% load static %}
         <img src = "{% static "myapp/ndsu-campus.jpg" %}" class="img-circle" alt="ndsu">
-        <h3>We Are NDSU Student Weather!</h3>
+        <h3>James Smith - james.j.smith@ndsu.edu</h3>
+        <h3>Dylan Klages - dylan.klages@ndsu.edu</h3>
+        <h3>Eli Hofmann - eli.hofmann@ndsu.edu</h3>
     </div>
 
     <div id="contact" class="container">
         <h3 class="text-center">Contact</h3>
-        <p class="text-center"><em>We love our fans!</em></p>
+        <p class="text-center"><em>We love our Users!</em></p>
         <div class="row test">
             <div class="col-md-4">
                 <p>Fan? Drop a note.</p>
-                <p><span class="glyphicon glyphicon-map-marker"></span>Chicago, US</p>
+                <p><span class="glyphicon glyphicon-map-marker"></span>FARGO, ND</p>
                 <p><span class="glyphicon glyphicon-phone"></span>Phone: +00 1515151515</p>
-                <p><span class="glyphicon glyphicon-envelope"></span>Email: mail@mail.com</p>
+                <p><span class="glyphicon glyphicon-envelope"></span>Email: studentweather@mail.com</p>
             </div>
             <div class="col-md-8">
                 <div class="row">
@@ -260,9 +262,6 @@
     
 </body>
 <footer class="text-center">
-    <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
-        <span class="glyphicon glyphicon-chevron-up"></span>
-    </a><br><br>
-    <p>Website made by: <a href="#" data-toggle="tooltip" title="Visit w3schools">www.w3schools.com</a></p>
+    <p>Website made in partnership with North Dakota State University - <a href="https://www.ndsu.edu/" data-toggle="tooltip" title="Visit NDSU">www.ndsu.edu</a></p>
 </footer>
 </html>
