@@ -64,23 +64,24 @@ def home(request):
         }
         
         #Get today's date
-        today = datetime.now().date()
+
         #Define the start date for the forecast (May 1st)
-        start_date = datetime(today.year, 5, 1).date()
+        start_date = datetime.now()
         #Calculate the end date (5 days from start date)
-        end_date = start_date + timedelta(days=4)
+        end_date = start_date + timedelta(days=7)
 
 
         for forecast in forecast_json['list']:
             #Extract date from timestamp
-            forecast_date = datetime.fromtimestamp(forecast['dt']).date()
+            forecast_date = datetime.fromtimestamp(forecast['dt'])
             #Check if the forecast date is within the desired range
             if start_date <= forecast_date <= end_date:
                 #Add forecast data to city_forecast
                 city_forecast['forecasts'].append({
                     'date': forecast_date.strftime('%Y-%m-%d'),
                     'temperature': forecast['main']['temp'],
-                    'description': forecast['weather'][0]['description']
+                    'description': forecast['weather'][0]['description'],
+                    'dt': forecast['dt_txt']
                 })
                 
         #Append city_forecast to forecast_data

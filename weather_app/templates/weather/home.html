@@ -183,7 +183,7 @@
                     {% for forecast in city_forecast.forecasts|slice:":5" %}
                         <div class="forecast-item">
                             <div class="thumbnail">
-                                <p><strong>{{ forecast.date }}</strong></p>
+                                <p><strong>{{ forecast.dt}}</strong></p>
                                 <p>{{ forecast.temperature }}°F</p>
                                 <p>{{ forecast.description }}</p>
                             </div>
@@ -209,7 +209,7 @@
                     {% for forecast in city_forecast.forecasts|slice:":5" %}
                         <div class="forecast-item">
                             <div class="thumbnail">
-                                <p><strong>{{ forecast.date }}</strong></p>
+                                <p><strong>{{ forecast.dt }}</strong></p>
                                 <p>{{ forecast.temperature }}°F</p>
                                 <p>{{ forecast.description }}</p>
                             </div>
